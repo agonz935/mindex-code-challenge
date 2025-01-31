@@ -59,23 +59,4 @@ public class CompensationServiceImpl implements CompensationService {
 
         return compensation;
     }
-
-    /**
-     * PUT API call for employee compensation.
-     * If no date is provided, effective date will be set to current date.
-     * @param compensation object
-     * @return compensation
-     */
-    @Override
-    public Compensation update(Compensation compensation) {
-        LOG.debug("Updating compensation {}", compensation);
-
-        if (compensation.getEffectiveDate() == null) {
-            compensation.setEffectiveDate(new Date());
-        }
-
-        return compensationRepository.save(compensation);
-    }
-
-
 }

@@ -13,10 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
@@ -75,22 +71,6 @@ public class CompensationServiceImplTest {
         Compensation readSalary = restTemplate.getForEntity(compensationUrl, Compensation.class, testEmployee.getEmployeeId()).getBody();
         assertNotNull(readSalary);
         assertCompensationEquivalence(testEmployeesSalary, readSalary);
-
-
-        // Update checks
-        testEmployeesSalary.setSalary(new BigDecimal(4444444));
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        Compensation updatedSalary =
-                restTemplate.exchange(compensationUrl,
-                        HttpMethod.PUT,
-                        new HttpEntity<Compensation>(testEmployeesSalary, headers),
-                        Compensation.class,
-                        testEmployee.getEmployeeId()).getBody();
-
-        assertCompensationEquivalence(testEmployeesSalary, updatedSalary);
     }
 
     private static void assertCompensationEquivalence(Compensation expected, Compensation actual) {

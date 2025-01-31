@@ -82,12 +82,4 @@ public class EmployeeController {
 
         return compensationService.read(id);
     }
-
-    @PutMapping("/employee/{id}/compensation")
-    public Compensation updateCompensation(@PathVariable String id, @RequestBody Compensation compensation) {
-        LOG.debug("Received employee update compensation request for employee id [{}]", id);
-
-        compensation.setEmployeeId(id);
-        return compensationService.update(compensation);
-    }
 }
