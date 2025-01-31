@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.mindex.challenge.service.impl.EmployeeServiceImplTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-01-31T19:24:57" hostname="DESKTOP-0RQBT9O" time="0.033">
+  <properties/>
+  <testcase name="testCreateReadUpdate" classname="com.mindex.challenge.service.impl.EmployeeServiceImplTest" time="0.033"/>
+  <system-out><![CDATA[2025-01-31T13:24:57.322-06:00  INFO 18744 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.mindex.challenge.service.impl.EmployeeServiceImplTest]: EmployeeServiceImplTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-01-31T13:24:57.324-06:00  INFO 18744 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.mindex.challenge.ChallengeApplication for test class com.mindex.challenge.service.impl.EmployeeServiceImplTest
+2025-01-31T13:24:57.345-06:00 DEBUG 18744 --- [o-auto-1-exec-5] c.m.c.controller.EmployeeController      : Received employee read request for [com.mindex.challenge.data.Employee@5d058849]
+2025-01-31T13:24:57.345-06:00 DEBUG 18744 --- [o-auto-1-exec-5] c.m.c.service.impl.EmployeeServiceImpl   : Creating employee [null]
+2025-01-31T13:24:57.349-06:00 DEBUG 18744 --- [o-auto-1-exec-6] c.m.c.controller.EmployeeController      : Received employee read request for id [cecd79f4-98df-4fa1-a278-486ba23b26d4]
+2025-01-31T13:24:57.349-06:00 DEBUG 18744 --- [o-auto-1-exec-6] c.m.c.service.impl.EmployeeServiceImpl   : Retrieving info for employee with id [cecd79f4-98df-4fa1-a278-486ba23b26d4]
+2025-01-31T13:24:57.355-06:00 DEBUG 18744 --- [o-auto-1-exec-7] c.m.c.controller.EmployeeController      : Received employee read request for id [cecd79f4-98df-4fa1-a278-486ba23b26d4] and employee [com.mindex.challenge.data.Employee@8479afa]
+2025-01-31T13:24:57.355-06:00 DEBUG 18744 --- [o-auto-1-exec-7] c.m.c.service.impl.EmployeeServiceImpl   : Updating employee [cecd79f4-98df-4fa1-a278-486ba23b26d4]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

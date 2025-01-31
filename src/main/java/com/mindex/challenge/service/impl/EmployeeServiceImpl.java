@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 import java.util.UUID;
 
 @Service
@@ -19,9 +21,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee create(Employee employee) {
-        LOG.debug("Creating employee [{}]", employee);
+        LOG.debug("Creating employee [{}]", employee.getEmployeeId());
 
         employee.setEmployeeId(UUID.randomUUID().toString());
+
+        if (employee.getUpdateDate() == null) {
+            employee.setUpdateDate(new Date());
+        }
         employeeRepository.insert(employee);
 
         return employee;
@@ -29,9 +35,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee read(String id) {
-        LOG.debug("Creating employee with id [{}]", id);
+        LOG.debug("Retrieving info for employee with id [{}]", id);
 
-        Employee employee = employeeRepository.findByEmployeeId(id);
+        Employee employee = employeeRepository.findTopByEmployeeIdOrderByUpdateDateDesc(id);
 
         if (employee == null) {
             throw new RuntimeException("Invalid employeeId: " + id);
@@ -42,7 +48,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee update(Employee employee) {
-        LOG.debug("Updating employee [{}]", employee);
+        LOG.debug("Updating employee [{}]", employee.getEmployeeId());
+        if (employee.getUpdateDate() == null) {
+            employee.setUpdateDate(new Date());
+        }
 
         return employeeRepository.save(employee);
     }
