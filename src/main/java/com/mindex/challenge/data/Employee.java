@@ -1,6 +1,5 @@
 package com.mindex.challenge.data;
 
-import java.util.Date;
 import java.util.List;
 
 public class Employee {
@@ -10,9 +9,6 @@ public class Employee {
     private String position;
     private String department;
     private List<Employee> directReports;
-
-
-    private Date updateDate;
 
     public Employee() {
     }
@@ -64,9 +60,5 @@ public class Employee {
     public void setDirectReports(List<Employee> directReports) {
         this.directReports = directReports;
     }
-
-    public Date getUpdateDate() { return updateDate; }
-
-    public void setUpdateDate(Date updateDate) { this.updateDate = updateDate; }
 
 }

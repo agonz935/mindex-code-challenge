@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 @Repository
 public interface CompensationRepository extends MongoRepository<Compensation, String> {
+    Compensation findByEmployeeId(String employeeId);
     // Returns most recent update
     Compensation findTopByEmployeeIdOrderByEffectiveDateDesc(String employeeId);
 }

@@ -51,7 +51,8 @@ public class CompensationServiceImpl implements CompensationService {
     public Compensation read(String employeeId){
         LOG.debug("Reading compensation for employee ID [{}]", employeeId);
 
-        Compensation compensation = compensationRepository.findTopByEmployeeIdOrderByEffectiveDateDesc(employeeId);
+        Compensation compensation = compensationRepository.findByEmployeeId(employeeId);
+        //Compensation compensation = compensationRepository.findTopByEmployeeIdOrderByEffectiveDateDesc(employeeId);
 
         if(compensation == null){
             throw new RuntimeException("No compensation found for employee ID [" + employeeId + "]");
@@ -59,4 +60,5 @@ public class CompensationServiceImpl implements CompensationService {
 
         return compensation;
     }
+
 }

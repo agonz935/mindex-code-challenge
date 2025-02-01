@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.UUID;
 
 @Service
@@ -25,9 +24,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         employee.setEmployeeId(UUID.randomUUID().toString());
 
-        if (employee.getUpdateDate() == null) {
-            employee.setUpdateDate(new Date());
-        }
         employeeRepository.insert(employee);
 
         return employee;
@@ -37,7 +33,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee read(String id) {
         LOG.debug("Retrieving info for employee with id [{}]", id);
 
-        Employee employee = employeeRepository.findTopByEmployeeIdOrderByUpdateDateDesc(id);
+        //PUT was creating another document of same employee. Used this method to get most recent
+        //but then realized if PUT is creating and not updating then it *should* break
+        //Employee employee = employeeRepository.findTopByEmployeeIdOrderByUpdateDateDesc(id);
+
+        Employee employee = employeeRepository.findByEmployeeId(id);
 
         if (employee == null) {
             throw new RuntimeException("Invalid employeeId: " + id);
@@ -46,12 +46,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employee;
     }
 
+    // PUT (update) not updating and is creating another document. Causes read error.
     @Override
     public Employee update(Employee employee) {
         LOG.debug("Updating employee [{}]", employee.getEmployeeId());
-        if (employee.getUpdateDate() == null) {
-            employee.setUpdateDate(new Date());
-        }
 
         return employeeRepository.save(employee);
     }

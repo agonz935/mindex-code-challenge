@@ -8,11 +8,19 @@ public class ReportingStructure {
     public ReportingStructure() {
     }
 
-    public Employee getEmployee() { return employee; }
+    public Employee getEmployee() {
+        return employee;
+    }
 
-    public void setEmployee(Employee employee) { this.employee = employee; }
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
 
-    public int getNumberOfReports() { return numberOfReports; }
+    public int getNumberOfReports() {
+        return numberOfReports;
+    }
 
-    public void setNumberOfReports(int numberOfReports) { this.numberOfReports = numberOfReports; }
+    public void setNumberOfReports(int numberOfReports) {
+        this.numberOfReports = numberOfReports;
+    }
 }
