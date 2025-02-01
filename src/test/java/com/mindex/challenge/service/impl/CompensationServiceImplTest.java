@@ -52,7 +52,7 @@ public class CompensationServiceImplTest {
 
         // Create testEmployee
         testEmployee = restTemplate.postForEntity(employeeUrl, testEmployee, Employee.class).getBody();
-        assertNotNull(testEmployee);
+        assertNotNull(testEmployee.getEmployeeId());
 
         // Set compensation test data
         Compensation testEmployeesSalary = new Compensation();

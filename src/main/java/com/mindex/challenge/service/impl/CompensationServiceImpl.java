@@ -35,6 +35,10 @@ public class CompensationServiceImpl implements CompensationService {
             compensation.setEffectiveDate(new Date());
         }
 
+        if(!validateCompensation(compensation)){
+            throw new RuntimeException("Missing fields in compensation"); //Could probably just say missing salary
+        }
+
         compensationRepository.insert(compensation);
 
         return compensation;
@@ -51,6 +55,10 @@ public class CompensationServiceImpl implements CompensationService {
     public Compensation read(String employeeId){
         LOG.debug("Reading compensation for employee ID [{}]", employeeId);
 
+        if (employeeId == null) {
+            throw new RuntimeException("Employee ID is null");
+        }
+
         Compensation compensation = compensationRepository.findByEmployeeId(employeeId);
         //Compensation compensation = compensationRepository.findTopByEmployeeIdOrderByEffectiveDateDesc(employeeId);
 
@@ -61,4 +69,17 @@ public class CompensationServiceImpl implements CompensationService {
         return compensation;
     }
 
+    private static boolean validateCompensation(Compensation compensation) {
+        if(compensation.getEmployeeId() == null){
+            return false;
+        }
+        if(compensation.getSalary() == null){
+            return false;
+        }
+        if(compensation.getEffectiveDate() == null){
+            return false;
+        }
+        return true;
+
+    }
 }
